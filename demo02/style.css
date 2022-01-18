@@ -30,7 +30,7 @@ h2 {
     margin: 10px 0;
 }
 
-.cup {
+.bigCup {
     background-color: #fff;
     border: 4px solid var(--border-color);
     color: var(--border-color);
@@ -85,7 +85,7 @@ h2 {
     width: 280px;
 }
 
-.cup.smallCup {
+.bigCup.smallCup {
     height: 95px;
     width: 50px;
     border-radius: 0 0 15px 15px;
@@ -99,7 +99,7 @@ h2 {
     transition: 0.3s ease;
 }
 
-.cup.smallCup.full {
+.bigCup.smallCup.full {
     background-color: var(--fill-color);
     color: #fff;
 }

@@ -1,86 +1,47 @@
-const remained = document.getElementById("remained");
-const liters = document.querySelector(".liters");
-const percentage = document.getElementById("percentage");
-const smallCups = document.querySelectorAll(".smallCup");
+const smallCup = document.querySelectorAll('.smallCup'); // 得到一个小水杯集合
+const remained = document.getElementById('remained'); // 剩余水量
+const percentage = document.getElementById('percentage'); // 百分比
+const liters = document.querySelector('.liters');
 
+smallCup.forEach((cup, idx) => {
+    cup.addEventListener('click', () => activeCups(idx)
+    )
+});
 
-updateBigCup()
-
-smallCups.map(value, idx, arr)
-
-const arr = [1, 2, 3, 4];
-
-const cb = (value, idx, arr) => {
-    console.log('执行cb了，接收到的参数--', value, idx, arr);
-}
-
-arr.forEach(cb);
-
-
-const callback = (value, idx, arr) => {
-    //  这里的逻辑，都是我们写的
-}
-
-smallCups.map(callback);
-
-// 添加监听事件
-smallCups.forEach((cup, idx) => {
-    
-    cup.addEventListener('click', () => {
-        console.log(`正在点击第${idx}个小水杯`);
-        highlightCups(idx);
-
-        // 在检查被点击水杯是亮起还是熄灭
-        if (smallCups[idx].classList.contains('active')) {
-            //  被点击的小水杯是亮起
-            smallCups[idx].classList.remove('active');
-            // smallCups[idx].classList.add('unactive');
-            for (let i = idx; i < smallCups.length; i++) {
-                const nextCup = smallCups[i];
-                nextCup.classList.remove('active');
+function activeCups(idx) {
+    console.log('下标--',idx, smallCup[idx].classList);
+    if (smallCup[idx].classList.contains('full')) {
+        // 当前及其后水杯清空
+        smallCup.forEach((cup,idx2) => {
+            if (idx2 >= idx) {
+                smallCup[idx2].classList.remove('full');
+                console.log(`this is remove -- ${smallCup[idx2]}, idx2-- ${idx2}`)
             }
-        } else {
-            //  不是亮起的
-        }
-    });
-})
-
-// smallCups伴随点击事件的样式变化
-function highlightCups(idx) {
-    if (idx === 7 && smallCups[idx].classList.contains("full")){idx--}
-    else if (smallCups[idx].classList.contains("full") && !smallCups[idx].nextElementSibling.classList.contains("full")){idx--}
-    
-
-    smallCups.forEach((cup, idx2) => {
-        if(idx2 <= idx) {
-            cup.classList.add("full");
-        } else {
-            cup.classList.remove("full");
-        }
-
-    })
-
-    updateBigCup()
-}
-
-function updateBigCup() {
-    const fullCups = document.querySelectorAll('.smallCup.full').length;
-    const totalCups = smallCups.length;
-
-    if(fullCups === 0) {
-        percentage.style.visibility = 'hidden';
-        percentage.style.height = 0;
+        })
     } else {
-        percentage.style.visibility = 'visible';
-        percentage.style.height = `${fullCups / totalCups * 330}px`;
-        percentage.innerText = `${fullCups / totalCups * 100}%`;
-    }
-
-    if(fullCups === totalCups) {
-        remained.style.visibility = 'hidden';
-        remained.style.height = 0;
-    } else {
-        remained.style.visibility = 'visible';
-        liters.innerText = `${2 - (250 * fullCups / 1000)}L`;
+        // 当前及其前方水杯full
+        smallCup.forEach((cup, idx2) => {
+            if (idx2 <= idx) {
+                smallCup[idx2].classList.add('full');
+                console.log(`this is add -- ${smallCup[idx2]}, idx2-- ${idx2}`);
+            }
+        })
     }
 }
+
+
+// 大水杯remained高度 = 小水杯full的个数 / 8 * 330px
+// 大水杯percentage高度 = 330px - remained 或者 小水杯not full的个数 / 8 * 330px
+// liters = 小水杯full的个数 * 250 / 1000   单位 L
+// percentage =小水杯not full的个数 / 8 * 100  单位%
+
+// function updateBigCup() {
+//     const fullCup = document.querySelectorAll(".bigCup.smallCup.full").length;
+//     remained.style.height = `${fullCup / 8 * 330}px`
+//     percentage.style.height = `${(8 - fullCup) / 8 * 330}px`
+//     liters.innerText = `${fullCup * 250 / 1000}L`
+//     percentage.innerText = `${(8 - fullCup) / 8 * 100}%`
+//     console.log(`fullcup-- ${fullCup}, percentage${percentage.innerText}`);
+// }
+
+// updateBigCup()
