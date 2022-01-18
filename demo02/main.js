@@ -1,6 +1,6 @@
-const smallCup = document.querySelectorAll('.smallCup'); // 得到一个小水杯集合
-const remained = document.getElementById('remained'); // 剩余水量
-const percentage = document.getElementById('percentage'); // 百分比
+const smallCup = document.querySelectorAll('.smallCup'); 
+const remained = document.getElementById('remained'); 
+const percentage = document.getElementById('percentage'); 
 const liters = document.querySelector('.liters');
 
 smallCup.forEach((cup, idx) => {
@@ -27,21 +27,32 @@ function activeCups(idx) {
             }
         })
     }
+
+    updateBigCup()
 }
 
 
-// 大水杯remained高度 = 小水杯full的个数 / 8 * 330px
-// 大水杯percentage高度 = 330px - remained 或者 小水杯not full的个数 / 8 * 330px
-// liters = 小水杯full的个数 * 250 / 1000   单位 L
-// percentage =小水杯not full的个数 / 8 * 100  单位%
 
-// function updateBigCup() {
-//     const fullCup = document.querySelectorAll(".bigCup.smallCup.full").length;
-//     remained.style.height = `${fullCup / 8 * 330}px`
-//     percentage.style.height = `${(8 - fullCup) / 8 * 330}px`
-//     liters.innerText = `${fullCup * 250 / 1000}L`
-//     percentage.innerText = `${(8 - fullCup) / 8 * 100}%`
-//     console.log(`fullcup-- ${fullCup}, percentage${percentage.innerText}`);
-// }
+function updateBigCup() {
+    const fullCup = document.querySelectorAll(".bigCup.smallCup.full").length;
+    const totalCup = smallCup.length;
+    if (fullCup === 0) {
+        percentage.style.visibility = 'hidden';
+        percentage.style.height = 0;
+        liters.innerText = `2L`;
 
-// updateBigCup()
+    } else if(fullCup === totalCup) {
+        remained.style.visibility = 'hidden';
+        remained.style.height = 0;
+        percentage.style.visibility = 'visible';
+        percentage.style.height = '330px';
+        percentage.innerText = '100%';
+    } else {
+        remained.style.visibility = 'visible';
+        percentage.style.visibility = 'visible';
+        remained.style.height = `${(totalCup - fullCup) / totalCup * 330}px`;
+        percentage.style.height = `${fullCup / totalCup * 330}px`;
+        liters.innerText = `${(totalCup - fullCup) * 250 / 1000}L`;
+        percentage.innerText = `${fullCup / totalCup * 100}%`;
+    }
+}
