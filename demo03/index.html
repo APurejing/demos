@@ -1,88 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 为什么缩进 -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 喝水小游戏</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Movie App</title>
 </head>
 
 <body>
-    <!-- 点击小杯子增减大杯子的水 -->
-    <div class="cups">
-        <div class="cup cup-small">1</div>
-        <div class="cup cup-small">2</div>
-        <div class="cup cup-small">3</div>
-        <div class="cup cup-small">4</div>
-        <div class="cup cup-small">5</div>
-        <div class="cup cup-small">6</div>
-        <div class="cup cup-small">7</div>
-        <div class="cup cup-small">8</div>
-    </div>
-    <script>
-        let waterCount = 0;
-        const smallCupList = document.querySelectorAll('.cup-small');
+    <header>
+        <form id="form">
+            <input type="text" id="search" class="search" placeholder="Search">
+        </form>
+    </header>
 
-        const onClickCup = (cup, idx, smallCupList) => {
-            console.log('cup--', cup, cup.classList);
-            console.log('idx--', idx);
-            console.log('smallCupList--', smallCupList);
-            console.log(cup.classList.contains('full'));
-            if (cup.classList.contains('full')) {
-                //   如果为true，表示当前被点击的水杯，水是加到了大杯子里
-                //   现在点它，是要把大杯子里的水，减到它前面一个水杯的分量
-                for (let i = 0; i < smallCupList.length; i++) {
-                    if (i >= idx) {
-                        //   把被点击的杯子以及它后面的杯子变成灰色
-                        let idxGraterThanIndexCup = smallCupList[i];
-                        idxGraterThanIndexCup.classList.remove('full');
-                    }
+    <main id="main"></main>
 
-                }
-
-            } else {
-                //   如果为false，表示当前被点击的水杯，水还没加到大杯子
-                //   现在点它，是要把大杯子里的水，加到它这个水量
-                for (let i = 0; i < smallCupList.length; i++) {
-                    //   把被点击的水杯以及它前面的水杯变成蓝色  
-                    if (i <= idx) {
-                        let idxLessThanIndexCup = smallCupList[i];
-                        idxLessThanIndexCup.classList.add('full');
-                    }
-
-                }
-            }
-        };
-
-
-
-        //  给每个小水杯添加点击事件的处理函数
-        smallCupList.forEach((cup, index, arr) => {
-            cup.addEventListener('click', (event) => {
-                console.log('点击事件产生的事件对象--', event);
-                console.log(`这是第${index}个小水杯的点击函数`);
-                console.log(cup.classList);
-                onClickCup(cup,index,arr);
-            })
-        });
-
-        //  cup1.addEventListener('click');
-        //  cup2.addEventListener('click');
-
-        // const arr = [1, 2, 3];
-        // arr.filter();
-        // let sum = 0;
-        // const callback = function (item, index, arr, other) {
-        //     console.log(`forEach的回调函数实际参数--`, arguments);
-        //     console.log(`forEach的回调函数接定义的形式参数`, item);
-        //     console.log(`other--`, other);
-        //     sum = sum + item;
-
-        // }
-        // arr.forEach(callback);
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
