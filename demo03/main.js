@@ -19,8 +19,8 @@ async function getMovies(url) {
 function showMovies(movies) {
     main.innerHTML = '';
 
-    movies.forEach(movies => {
-        const { title, poster_path, vote_average, overiew} = movie; // 解构赋值?
+    movies.forEach(movie => {
+        const { title, poster_path, vote_average, overview } = movie; // 解构赋值?
 
         const movieEl = document.createElement('div');
         movieEl.classList.add('movie');
@@ -28,12 +28,12 @@ function showMovies(movies) {
         movieEl.innerHTML = `
             <img src="${IMG_PATH + poster_path}" alt="${title}"> 
             <div class="movie-info">
-          <h3>${title}</h3>
-          <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+            <h3>${title}</h3>
+            <span class="${getClassByRate(vote_average)}">${vote_average}</span>
             </div>
             <div class="overview">
             <h3>Overview</h3>
-            ${overiew}
+            ${overview}
             </div>
         `
         main.appendChild(movieEl)
@@ -42,7 +42,7 @@ function showMovies(movies) {
 }// 缩进？
 
 function getClassByRate(vote) {
-    if(vote >= 8) {
+    if (vote >= 8) {
         return 'green';
     } else if (vote >= 5) {
         return 'orange';
@@ -51,7 +51,7 @@ function getClassByRate(vote) {
     }
 }
 
-form.addEventListener('submit', (e)) => {
+form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     const searchTerm = search.value; // ??
@@ -62,6 +62,7 @@ form.addEventListener('submit', (e)) => {
         search.value = ''
     } else {
         window.location.reload()
-        
+
     }
-}
+})
+
