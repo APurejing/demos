@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>电影App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 </head>
 
 <body>
@@ -19,6 +20,36 @@
     <main id="main"></main>
 
     <script src="main.js"></script>
+
+    <script>
+        //  画一个直径为150的红色圆圈
+        //  在红色圆圈完成后，在圆的中心加一个hello world
+
+        const drawRedCircle = (callback) => {
+            const div = document.createElement('div');
+            div.style.width = '150px';
+            div.style.height = '150px';
+            div.style.backgroundColor = 'red';
+            div.style.borderRadius = '50%';
+            document.body.append(div);
+            //  div.innerText = 'Hello World'
+            callback(div)
+        }
+
+        const callback = (element) => {
+            element.innerText = 'Hello World';
+            element.style.display = 'flex';
+            element.style.justifyContent = 'center';
+            element.style.alignItems = 'center';
+        }
+        drawRedCircle(callback);
+
+        
+
+
+
+
+    </script>
 </body>
 
 </html>
