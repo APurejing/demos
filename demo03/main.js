@@ -106,7 +106,7 @@ const requestWithXhrInPromise = (apiUrl) => {
                 console.log('解析后的数据', typeof data);
                 console.log('电影的数据--', data);
                 resolve(data);
-                
+
             } else if (xhr.status !== 200) {
                 //  表示这次请求出错了
                 reject('这次请求嗝屁了，没数据----');
@@ -124,16 +124,16 @@ const requestWithXhrInPromise = (apiUrl) => {
 //         console.log('data--', data);
 //     })
 //     // .then(() => {
-       
+
 //     // })
 //     // .then(() => {
-        
+
 //     // })
 //     .catch((error) => {
 //         console.log('http请求的promise完成了，但是出错了--', error);
 //     })
 //     .finally(() => {
-        
+
 //     })
 
 
@@ -209,20 +209,20 @@ const task3 = (task2Data = '333') => {
 };
 
 
-const executeTask =  () => {
-     console.log('1');
-     task1().then(() => {
-         return task2()
-     }).then(() => {
-         return task3()
-     }).then(() => {
-         console.log('任务全部完成啦');
-     });
-     console.log('2');
-   
-     console.log('3')
-     
-     console.log('4');
+const executeTask = () => {
+    console.log('1');
+    task1().then(() => {
+        return task2()
+    }).then(() => {
+        return task3()
+    }).then(() => {
+        console.log('任务全部完成啦');
+    });
+    console.log('2');
+
+    console.log('3')
+
+    console.log('4');
 }
 
 executeTask();
@@ -231,11 +231,11 @@ executeTask();
 
 const request = async () => {
 
-    let a = await  mockRequest().catch(error => {
+    let a = await mockRequest().catch(error => {
         return error;
     });
-    
-     await mockRequest();
+
+    await mockRequest();
 
     // await mockRequest();
     console.log('promiseRTesult--', promiseResult);
@@ -250,7 +250,7 @@ const request = async () => {
 // }).catch((error) => {
 //     promiseResult = error;
 //     console('error--', promiseResult);
-    
+
 // });
 
 // console.log('不用await--, promiseResult--', promiseResult)
