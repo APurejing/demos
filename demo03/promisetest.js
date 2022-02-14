@@ -282,12 +282,11 @@ async function getMovies(url) {
 }
 
 
-
 function showMovies(movies) {
     main.innerHTML = '';
 
     movies.forEach(movie => {
-        const { title, poster_path, vote_average, overview } = movie; // 解构赋值?
+        const { title, poster_path, vote_average, overview } = movie;
 
         const movieEl = document.createElement('div');
         movieEl.classList.add('movie');
