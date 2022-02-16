@@ -305,7 +305,7 @@ function showMovies(movies) {
         main.appendChild(movieEl)
 
     });
-}// 缩进？
+}
 
 function getClassByRate(vote) {
     if (vote >= 8) {
