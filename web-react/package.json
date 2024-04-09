@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ahooks": "^3.7.10",
     "ali-oss": "^6.20.0",
     "antd": "^5.8.6",
     "echarts": "^5.4.3",

@@ -9,6 +9,33 @@ import {
 } from 'react-router-dom';
 import LineECharts from './pages/echarts';
 import OptionComponent from './pages/OptionComponent';
+import { Button, Tabs } from 'antd';
+
+const mockList = [
+  {
+    code: 'code1',
+    name: 'test1',
+    children: [
+      { code: 'codeChild1', name: 'testChild1' },
+      { code: 'codeChild2', name: 'testChild2' },
+      { code: 'codeChild3', name: 'testChild3' }
+    ]
+  },
+  {
+    code: 'code2',
+    name: 'test2',
+    children: [
+      { code: 'codeChild1_2', name: 'testChild1_2' },
+      { code: 'codeChild2_2', name: 'testChild2_2' },
+      { code: 'codeChild3_2', name: 'testChild3_2' }
+    ]
+  },
+  {
+    code: 'code3',
+    name: 'test3',
+    children: []
+  }
+];
 
 const ComA = () => {
   const navigate = useNavigate();
@@ -63,7 +90,55 @@ const onClickUpload = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div onClick={onClickUpload}>upload</div>
+    element: (
+      <div onClick={onClickUpload}>
+        {/* <Tabs
+          style={{ border: '1px solid red', width: '75vw' }}
+          defaultActiveKey={mockList[0].code}
+          items={mockList.map((parent) => {
+            return {
+              key: parent.code,
+              label: parent.name,
+              children: (
+                <Tabs
+                  defaultActiveKey={
+                    parent.children.length ? parent.children[0].code : null
+                  }
+                  items={
+                    parent.children.length
+                      ? parent.children.map((child) => {
+                          return {
+                            key: child.code,
+                            label: child.name,
+                            children: <div>{child.name}</div>
+                          };
+                        })
+                      : []
+                  }
+                />
+              )
+            };
+          })}
+        /> */}
+        <Tabs
+          style={{ border: '1px solid red', width: '75vw' }}
+          defaultActiveKey={mockList[0].code}
+          items={mockList.map((parent) => {
+            return {
+              key: parent.code,
+              label: parent.name,
+              children: parent.children.length ? (
+                parent.children.map((child) => {
+                  return <Button key={child.code}>{child.name}</Button>;
+                })
+              ) : (
+                <Button>{parent.name}</Button>
+              )
+            };
+          })}
+        />
+      </div>
+    )
   },
   {
     path: '/pageA',
