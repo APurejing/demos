@@ -27,6 +27,7 @@ const mockList = [
     children: [
       { code: 'codeChild1_2', name: 'testChild1_2' },
       { code: 'codeChild2_2', name: 'testChild2_2' },
+      { code: 'codeChild3_2', name: 'testChild2_2' },
     ]
   },
   {
